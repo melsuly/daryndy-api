@@ -7,7 +7,8 @@ const LessonSchema = new mongoose.Schema({
     },
     contents: {
         type: [{ 
-            type: mongoose.Schema.Types.ObjectId
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Task'
         }],
         default: []
     }
