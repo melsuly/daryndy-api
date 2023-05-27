@@ -18,7 +18,7 @@ const getAll = async (req, res) => {
 const getOne = async (req, res) => {
     try {
         // Try to get lesson by id from DB
-        const lesson = await LessonModel.findById(req.params.id)
+        const lesson = await LessonModel.findById(req.params.id).populate('contents')
 
         res.status(200).json(lesson)
     } catch (e) {
