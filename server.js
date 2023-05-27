@@ -15,6 +15,7 @@ app.use(express.json())
 
 // Routes
 app.use('/auth', require('./routes/auth.routes'))
+app.use('/users', require('./routes/users.routes'))
 
 // Start server and display errors & logs
 app.listen(port, (e) => {

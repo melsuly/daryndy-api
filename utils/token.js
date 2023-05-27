@@ -13,4 +13,13 @@ const generateToken = (credentials) => {
     return token
 }
 
-module.exports = { generateToken }
+/*
+    Verify token and decode by secret key
+*/
+const verifyToken = (token) => {
+    const credentials = jwt.verify(token, secretKey)
+
+    return credentials
+}
+
+module.exports = { generateToken, verifyToken }
