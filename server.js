@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const app = express()
 const port = 4444
@@ -12,6 +13,8 @@ mongoose.connect(mongodbURI)
 
 // Enable JSON
 app.use(express.json())
+// Fix CORS
+app.use(cors())
 
 // Routes
 app.use('/auth', require('./routes/auth.routes'))
