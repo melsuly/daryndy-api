@@ -3,7 +3,7 @@ const CourseModel = require('../models/CourseModel')
 const getAll = async (req, res) => {
     try {
         // Try to get all courses from DB
-        const courses = await CourseModel.find()
+        const courses = await CourseModel.find().populate('teacher')
 
         res.status(200).json(courses)
     } catch (e) {
@@ -17,7 +17,7 @@ const getAll = async (req, res) => {
 const getOne = async (req, res) => {
     try {
         // Try to get lesson by id from DB
-        const course = await CourseModel.findById(req.params.id).populate('modules')
+        const course = await CourseModel.findById(req.params.id).populate('teacher').populate('modules')
 
         res.status(200).json(course)
     } catch (e) {
@@ -33,7 +33,8 @@ const create = async (req, res) => {
     const doc = new CourseModel({
         title: req.body.title,
         description: req.body.description,
-        modules: req.body.modules
+        modules: req.body.modules,
+        teacher: req.userID
     })
 
     try {
