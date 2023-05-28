@@ -7,16 +7,6 @@ const generateToken = require('../utils/token').generateToken
     Login user by credentials
 */
 const login = async (req, res) => {
-    // Check for errors in credentials validation
-    const e = validator.validationResult(req)
-
-    // Return error if validation failed
-    if (!e.isEmpty()) {
-        return res.status(400).json({
-            error: e.array()[0].msg
-        })
-    }
-
     try {
         // Try to find user in DB
         const user = await UserModel.findOne({ email: req.body.email })
@@ -60,16 +50,6 @@ const login = async (req, res) => {
     Register user by credentials
 */
 const register = async (req, res) => {
-    // Check for errors in credentials validation
-    const e = validator.validationResult(req)
-
-    // Return error if validation failed
-    if (!e.isEmpty()) {
-        return res.status(400).json({
-            error: e.array()[0].msg
-        })
-    }
-
     // Hashing password
     const hashedPassword = await hash.hashPassword(req.body.password)
 

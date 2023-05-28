@@ -1,4 +1,4 @@
-const validator = require('express-validator')
+const handleValidationErrors = require('../middlewares/handleValidationErrors')
 const LessonModel = require('../models/LessonModel')
 
 const getAll = async (req, res) => {
@@ -30,16 +30,6 @@ const getOne = async (req, res) => {
 }
 
 const create = async (req, res) => {
-    // Check for errors in credentials validation
-    const e = validator.validationResult(req)
-
-    // Return error if validation failed
-    if (!e.isEmpty()) {
-        return res.status(400).json({
-            error: e.array()[0].msg
-        })
-    }
-
     // Creating new Lesson
     const doc = new LessonModel({
         title: req.body.title,

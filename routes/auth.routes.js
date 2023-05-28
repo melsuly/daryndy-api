@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/AuthController')
 const validation = require('../validations/auth.validations')
+const handleValidationErrors = require('../middlewares/handleValidationErrors')
 
 /*
     Authorise user by credentials
@@ -10,7 +11,7 @@ const validation = require('../validations/auth.validations')
     @param email
     @param password
 */
-router.post('/login', validation.login, controller.login)
+router.post('/login', validation.login, handleValidationErrors, controller.login)
 
 /*
     Register user by credentials
@@ -20,6 +21,6 @@ router.post('/login', validation.login, controller.login)
     @param email
     @param password
 */
-router.post('/register', validation.register, controller.register)
+router.post('/register', validation.register, handleValidationErrors, controller.register)
 
 module.exports = router

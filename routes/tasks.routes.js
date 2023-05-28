@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/TaskController')
 const validation = require('../validations/task.validation')
+const handleValidationErrors = require('../middlewares/handleValidationErrors')
 
 const checkAuth = require('../middlewares/checkAuth')
 
@@ -19,6 +20,6 @@ router.get('/:id', controller.getOne)
 
     POST: /
 */
-router.post('/', validation.create, controller.create)
+router.post('/', validation.create, handleValidationErrors, controller.create)
 
 module.exports = router
