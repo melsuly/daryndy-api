@@ -22,6 +22,7 @@ app.use('/users', require('./routes/users.routes'))
 app.use('/tasks', require('./routes/tasks.routes'))
 app.use('/lessons', require('./routes/lessons.routes'))
 app.use('/modules', require('./routes/modules.routes'))
+app.use('/courses', require('./routes/courses.routes'))
 
 // Start server and display errors & logs
 app.listen(port, (e) => {
