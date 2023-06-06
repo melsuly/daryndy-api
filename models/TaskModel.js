@@ -6,7 +6,7 @@ const TaskSchema = new mongoose.Schema({
         required: true
     },
     content: {
-	type: Array
+	type: Array,
         required: true
     }
 }, { timestamps: true })
