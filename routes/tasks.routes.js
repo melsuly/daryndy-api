@@ -16,6 +16,18 @@ router.use(checkAuth)
 router.get('/:id', controller.getOne)
 
 /*
+    Get user result for task
+*/
+router.get('/results/:id', checkAuth, controller.getResults)
+
+/*
+    Create new task
+
+    POST: /
+*/
+router.post('/results', controller.saveResult)
+
+/*
     Create new task
 
     POST: /

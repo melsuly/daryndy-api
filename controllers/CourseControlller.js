@@ -3,7 +3,7 @@ const CourseModel = require('../models/CourseModel')
 const getAll = async (req, res) => {
     try {
         // Try to get all courses from DB
-        const courses = await CourseModel.find().populate('teacher')
+        const courses = await CourseModel.find().populate('modules')
 
         res.status(200).json(courses)
     } catch (e) {

@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 const app = express()
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 9999
 const mongodbURI = process.env.MONGODB_URI || 'mongodb+srv://admin:AHLWvG1PiH6AugiU@daryndyv1.p076h8a.mongodb.net/v1?retryWrites=true&w=majority'
 
 // Connect to DB
