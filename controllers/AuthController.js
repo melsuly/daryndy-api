@@ -14,17 +14,20 @@ const login = async (req, res) => {
         // Return error if not found
         if (!user) {
             return res.status(404).json({
-                error: 'Қолданушы табылмады!'
+                error: 'Қолданушы табылмады!',
             })
         }
 
         // Compare passwords
-        const isValidPass = await hash.comparePassword(req.body.password, user._doc.passwordHash)
+        const isValidPass = await hash.comparePassword(
+            req.body.password,
+            user._doc.passwordHash
+        )
 
         // Return error if credentials is invalid
         if (!isValidPass) {
             return res.status(400).json({
-                error: 'Email немесе құпиясөз қате!'
+                error: 'Email немесе құпиясөз қате!',
             })
         }
 
@@ -32,14 +35,14 @@ const login = async (req, res) => {
         const { passwordHash, ...userData } = user._doc
 
         // Generate token for new account
-        const token = generateToken({ 
-            _id: user._id
+        const token = generateToken({
+            _id: user._id,
         })
 
         // Return credentials of new account
         res.status(200).json({
             ...userData,
-            token
+            token,
         })
     } catch (e) {
         console.warn(e)
@@ -57,9 +60,10 @@ const register = async (req, res) => {
     const doc = new UserModel({
         name: req.body.name,
         surname: req.body.surname,
+        gender: req.body.gender,
         email: req.body.email,
         passwordHash: hashedPassword,
-        role: req.body.role
+        role: req.body.role,
     })
 
     // Saving new account to DB
@@ -70,24 +74,24 @@ const register = async (req, res) => {
         const { passwordHash, ...userData } = user._doc
 
         // Generate token for new account
-        const token = generateToken({ 
-            _id: user._id
+        const token = generateToken({
+            _id: user._id,
         })
 
         // Return credentials of new account
         res.status(201).json({
             ...userData,
-            token
+            token,
         })
     } catch (e) {
         // Recognize error code
         if (e.code == 11000) {
             res.status(400).json({
-                error: 'Бұл email тіркелген!'
+                error: 'Бұл email тіркелген!',
             })
         } else {
             res.status(500).json({
-                error: 'Сервердегі қате!'
+                error: 'Сервердегі қате!',
             })
         }
     }
