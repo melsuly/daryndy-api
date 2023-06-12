@@ -51,7 +51,7 @@ const getResults = async (req, res) => {
 const create = async (req, res) => {
     // Creating new Lesson
     const doc = new TaskModel({
-        taskType: req.body.taskType,
+        category: req.body.category,
         content: req.body.content,
     })
 

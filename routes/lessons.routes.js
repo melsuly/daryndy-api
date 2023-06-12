@@ -28,5 +28,6 @@ router.get('/:id', controller.getOne)
     POST: /
 */
 router.post('/', validation.create, handleValidationErrors, controller.create)
+router.post('/:id/tasks', controller.createTask)
 
 module.exports = router

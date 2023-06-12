@@ -7,4 +7,10 @@ const create = [
     body('modules').optional().isArray()
 ]
 
-module.exports = { create }
+const createModule = [
+    body('title').isLength({ min: 5 }),
+    body('description').optional().isString(),
+    body('lessons').optional().isArray()
+]
+
+module.exports = { create, createModule }

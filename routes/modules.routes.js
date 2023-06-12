@@ -29,4 +29,11 @@ router.get('/:id', controller.getOne)
 */
 router.post('/', validation.create, handleValidationErrors, controller.create)
 
+router.post(
+    '/:id/lessons',
+    validation.createLesson,
+    handleValidationErrors,
+    controller.createLesson
+)
+
 module.exports = router
